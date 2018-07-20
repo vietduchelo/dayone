@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- <script src="//code.jquery.com/jquery-1.11.3.min.js"></script> -->
+  <!-- <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script> -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
+	 crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	 crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+	 crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
+	 crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <nav style="background: goldenrod; color: white" class="navbar navbar-expand-lg navbar-light ">
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+				  <span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+				  <a class="navbar-brand" style="color: white" href="C:\Users\KhoaHV2\Desktop\Front-End Toturial\HTML_CSS_JS\index.html">Trang Chủ</a>
+				  <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+					<li class="nav-item active">
+					  <a style="color: white" class="nav-link" href="file:///C:/Users/KhoaHV2/Desktop/Front-End%20Toturial/HTML_CSS_JS/tableuser.html">User Page<span class="sr-only">(current)</span></a>
+					</li>
+				  </ul>
+				  <form class="form-inline my-2 my-lg-0">
+					<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+				  </form>
+				</div>
+			  </nav>
+  <div class="container">
+    <h2>Table User</h2>
+
+    <form method="get" id="formDemo">
+      <fieldset>
+        <div class="form">
+          <label>Username: </label>
+          <br>
+          <input type="text" placeholder="username" required id="name">
+        </div>
+        <div class="form">
+          <label>Phone: </label>
+          <br>
+          <input type="text" placeholder="phone" required id="phone">
+        </div>
+        <div class="form">
+          <label>BirthDay: </label>
+          <br>
+          <input type="date" placeholder="birthday" required id="birthday">
+        </div>
+        <br>
+        <input type="button" class="add-row" value="Add Row" onclick="pushUser()">
+      </fieldset>
+    </form>
+
+    <br>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Phone</th>
+          <th>Birthday</th>
+          <th>Edit</th>
+          <th>Remove</th>
+        </tr>
+      </thead>
+      <tbody id="myTable">
+        <tr>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog">
+      
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 style="margin-right: 300px;">EDIT USER</h4>
+          </div>
+          <div class="modal-body">
+            <labe>Username</labe>
+            <p><input type="text" id="huhu" placeholder="username" style="border-bottom: solid 2px gray;"></p>
+            <labe>Phone</labe>
+            <p><input type="text"id="huhu" placeholder="phone"  style="border-bottom: solid 2px gray;"></p>
+            <labe>Birthday</labe>
+            <p><input type="date" id="huhu" placeholder="birthday"  style="border-bottom: solid 2px gray;"></p>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-default" >Save</button>
+
+          </div>
+        </div>
+        
+      </div>
+    </div>
+</body>
+
+</html>
+<script>
+  myUsers = [];
+  user = {
+    id: Number,
+    name: String,
+    phone: String,
+    birthday: String
+  }
+  var a = 0;
+  
+  function pushUser() {
+    user.id = a++;
+    user.name = document.getElementById("name").value;
+    user.phone = document.getElementById("phone").value;
+    user.birthday = document.getElementById("birthday").value;
+    if (user.name != "" && user.phone != "" && user.birthday != "") {
+      this.user.id = a;
+      this.myUsers.push(user);
+      console.log(this.myUsers);
+      var length = myUsers.length;
+      var table = document.getElementById("myTable");
+      var row = table.insertRow(0);
+      var cell1 = row.insertCell(0);
+      var cell2 = row.insertCell(1);
+      var cell3 = row.insertCell(2);
+      var cell4 = row.insertCell(3);
+      var cell5 = row.insertCell(4);
+
+    }
+    else{
+      alert("Vui lòng nhập đầy đủ thông tin")
+    }
+ 
+    for (var i = 0; i < length; i++) {
+
+      cell1.innerHTML = myUsers[i].name;
+      cell2.innerHTML = myUsers[i].phone;
+      cell3.innerHTML = myUsers[i].birthday;
+      cell4.innerHTML = "<button id=" + i + " class="+"btn btn-info btn-lg"+" data-toggle="+"modal"+" data-target="+"#myModal"+"  >Sửa</button>";
+      cell5.innerHTML = "<button id=hehe class="+"deleteUser"+" >Xóa</button>";
+    }
+
+  }
+  $(document).ready(function () {
+
+    $("#myTable").on('click', '.deleteUser', function () {
+     var x = confirm("Bạn có muốn xóa không!");
+     if(x== true){
+      $(this).closest('tr').remove();
+
+     }
+    });
+  });
+  $(document).ready(function () {
+    $("#formDemo").validate({
+      rules: {
+        name: "required",
+        phone: "required",
+        birthday: "required"
+      },
+      messages: {
+        ho: "Vui lòng nhập họ",
+        ten: "Vui lòng nhập tên",
+        diachi: "Vui lòng nhập địa chỉ"
+      }
+
+    });
+
+  });
+</script>
+<style>
+  #hehe{
+    display: inline-block;
+    padding: 8px 12px;
+    margin-bottom: 0;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+  }
+  #huhu{
+    border-bottom: solid 1px gray;
+    /* border: none; */
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    
+  }
+</style>
